@@ -6,7 +6,7 @@
   <title>M. Sajed Hamouda — Da Vinci Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=General+Sans:ital,wght@0,100..900;1,100..900&family=Clash+Display:wght@400;500;600;700;800;900&family=Gloria+Hallelujah&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #090807;
@@ -113,22 +113,22 @@
 
     .hero-eyebrow {
       font-size: 0.65rem; letter-spacing: 0.35em;
-      text-transform: uppercase; color: var(--gold);
+      text-transform: uppercase; color: var(--primary);
       margin-bottom: 28px;
       display: flex; align-items: center; gap: 16px;
       opacity: 0; animation: fadeUp 0.9s ease forwards 0.4s;
     }
-    .hero-eyebrow span { width: 40px; height: 1px; background: var(--gold); display: block; }
+    .hero-eyebrow span { width: 40px; height: 1px; background: var(--primary); display: block; }
 
     .hero-title {
       font-family: 'Playfair Display', serif;
       font-weight: 400;
       font-size: clamp(3.8rem, 9vw, 9rem);
       line-height: 0.93;
-      color: var(--white);
+      color: var(--text);
       opacity: 0; animation: fadeUp 1s ease forwards 0.6s;
     }
-    .hero-title em { font-style: italic; color: var(--gold-light); }
+    .hero-title em { font-style: italic; color: var(--primary-light); }
 
     .hero-bottom {
       margin-top: 60px;
@@ -138,17 +138,17 @@
     .hero-desc {
       max-width: 380px;
       font-size: 0.85rem; line-height: 1.95;
-      color: var(--muted);
+      color: var(--text-muted);
     }
     .hero-scroll {
       display: flex; flex-direction: column;
       align-items: center; gap: 10px;
       font-size: 0.58rem; letter-spacing: 0.3em;
-      text-transform: uppercase; color: var(--muted);
+      text-transform: uppercase; color: var(--text-muted);
     }
     .scroll-line {
       width: 1px; height: 60px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
+      background: linear-gradient(to bottom, var(--primary), transparent);
       animation: pulse 2s ease-in-out infinite;
     }
     @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
@@ -194,6 +194,13 @@
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 100px; align-items: start;
     }
+    .section-label {
+      font-size: 0.6rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 64px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
     .about-title {
       font-family: 'Playfair Display', serif; font-weight: 400;
       font-size: clamp(2.4rem, 4vw, 3.8rem);
@@ -222,6 +229,61 @@
       background: var(--gold-dim); transition: all 0.3s;
     }
     .chip:hover { background: rgba(196,162,101,0.16); color: var(--gold-light); }
+
+    /* SERVICES */
+    #services { background: var(--bg2); }
+    .services-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; margin-bottom: 72px;
+    }
+    .services-h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      line-height: 0.95; color: var(--black);
+      letter-spacing: 0.02em;
+    }
+    .services-h2 span { color: var(--red); }
+    .services-intro-p {
+      font-size: 0.95rem; line-height: 1.9;
+      color: var(--muted2); align-self: end;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border: 1.5px solid var(--border-dark);
+    }
+    .svc {
+      padding: 48px 36px;
+      border-right: 1.5px solid var(--border-dark);
+      transition: background 0.3s; position: relative;
+    }
+    .svc:last-child { border-right: none; }
+    .svc:hover { background: var(--black); }
+    .svc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem; color: var(--border-dark);
+      line-height: 1; margin-bottom: 28px;
+      transition: color 0.3s;
+    }
+    .svc:hover .svc-num { color: var(--red); }
+    .svc-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: 0.04em;
+      color: var(--black); margin-bottom: 14px;
+      transition: color 0.3s;
+    }
+    .svc:hover .svc-title { color: var(--bg); }
+    .svc-desc {
+      font-size: 0.8rem; line-height: 1.9;
+      color: var(--muted2); transition: color 0.3s;
+    }
+    .svc:hover .svc-desc { color: rgba(255,255,255,0.55); }
+    .svc-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--red);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .svc:hover .svc-bar { transform: scaleX(1); }
 
     /* WORK */
     #work { background: var(--bg2); }
@@ -307,90 +369,70 @@
       font-style: italic; font-size: 1.3rem; color: var(--white);
     }
 
-    /* SERVICES */
-    #services { background: var(--bg); }
-    .services-intro {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 100px; margin-bottom: 80px;
-    }
-    .services-h2 {
-      font-family: 'Playfair Display', serif; font-weight: 400;
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      line-height: 1.1; color: var(--white);
-    }
-    .services-h2 em { font-style: italic; color: var(--gold-light); }
-    .services-p {
-      font-size: 0.88rem; line-height: 2;
-      color: var(--muted); align-self: end;
-    }
-    .services-list {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      border-top: 1px solid var(--border);
-    }
-    .service-card {
-      padding: 52px 40px 48px;
-      border-right: 1px solid var(--border);
-      transition: background 0.4s; position: relative; overflow: hidden;
-    }
-    .service-card:last-child { border-right: none; }
-    .service-card:hover { background: var(--gold-dim); }
-    .svc-index {
-      font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 2.5rem;
-      color: var(--border); line-height: 1; margin-bottom: 36px;
-      transition: color 0.4s;
-    }
-    .service-card:hover .svc-index { color: var(--gold); }
-    .svc-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; font-weight: 400;
-      color: var(--white); margin-bottom: 18px;
-    }
-    .svc-desc { font-size: 0.78rem; line-height: 1.95; color: var(--muted); }
-    .svc-line {
-      position: absolute; bottom: 0; left: 40px; right: 40px;
-      height: 2px; background: var(--gold);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.5s ease;
-    }
-    .service-card:hover .svc-line { transform: scaleX(1); }
-
     /* CONTACT */
-    #contact { background: var(--bg2); padding: 140px 56px; }
+    #contact {
+      background: var(--black);
+      padding: 120px 56px;
+    }
+    .contact-eyebrow {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 48px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .contact-eyebrow::before { content: '/'; }
     .contact-big {
-      font-family: 'Playfair Display', serif; font-weight: 400;
-      font-size: clamp(3rem, 7vw, 7rem);
-      line-height: 1; color: var(--white);
-      margin-bottom: 60px; max-width: 900px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 10rem);
+      line-height: 0.9; letter-spacing: 0.01em;
+      color: var(--bg); margin-bottom: 64px;
     }
-    .contact-big em { font-style: italic; color: var(--gold-light); }
-    .contact-row { display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
-    .contact-email-link {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.1rem, 2vw, 1.6rem); font-style: italic;
-      color: var(--gold); text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 4px; transition: all 0.3s;
+    .contact-big span { color: var(--red); }
+    .contact-row {
+      display: flex; align-items: center;
+      gap: 48px; flex-wrap: wrap;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.12);
     }
-    .contact-email-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
-    .contact-location {
-      font-size: 0.65rem; letter-spacing: 0.28em;
-      text-transform: uppercase; color: var(--muted);
+    .contact-email {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.2rem, 2.5vw, 2rem);
+      letter-spacing: 0.06em;
+      color: var(--bg); text-decoration: none;
+      transition: color 0.3s;
     }
+    .contact-email:hover { color: var(--red); }
+    .contact-loc {
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .contact-cta {
+      margin-left: auto;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--black); background: var(--bg);
+      text-decoration: none; padding: 14px 32px;
+      transition: all 0.3s;
+    }
+    .contact-cta:hover { background: var(--red); color: var(--bg); }
 
     /* FOOTER */
     footer {
-      padding: 28px 56px; border-top: 1px solid var(--border);
-      background: var(--bg);
+      background: var(--black);
+      padding: 24px 56px;
+      border-top: 1px solid rgba(255,255,255,0.08);
       display: flex; justify-content: space-between; align-items: center;
     }
     footer span {
-      font-size: 0.62rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--muted);
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 1rem; color: var(--gold);
+    .footer-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem; letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.6);
     }
 
     /* REVEAL */
@@ -410,30 +452,25 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      nav { padding: 24px; }
-      .nav-links, .nav-cta { display: none; }
-      #hero { padding: 0 24px 60px; }
-      .section-pad { padding: 90px 24px; }
-      .about-grid, .services-intro { grid-template-columns: 1fr; gap: 48px; }
-      .services-list { grid-template-columns: 1fr; }
-      .service-card { border-right: none; border-bottom: 1px solid var(--border); }
-      .project-item { grid-template-columns: 50px 1fr auto; gap: 16px; }
-      .proj-tag { display: none; }
-      #contact { padding: 90px 24px; }
-      footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
-      .work-title-row { flex-direction: column; align-items: flex-start; gap: 24px; }
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      #hero { padding: 100px 24px 60px; grid-template-columns: 1fr; }
+      .pad { padding: 80px 24px; }
+      .about-grid, .services-header { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .svc { border-right: none; border-bottom: 1.5px solid var(--border-dark); }
+      .svc:last-child { border-bottom: none; }
+      .proj-row { grid-template-columns: 50px 1fr auto; gap: 16px; }
+      .p-tag { display: none; }
+      footer { flex-direction: column; gap: 8px; padding: 20px 24px; text-align: center; }
+      .contact-cta { margin-left: 0; }
     }
   </style>
 </head>
 <body>
 
   <div class="cursor-dot" id="dot"></div>
-  <div class="cursor-circle" id="ring"></div>
-
-  <div class="project-preview" id="preview">
-    <div class="prev-domain" id="prevDomain"></div>
-    <div class="prev-name" id="prevName"></div>
-  </div>
+  <div class="cursor-ring" id="ring"></div>
 
   <!-- NAV -->
   <nav>
@@ -448,68 +485,69 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-orb1"></div>
-    <div class="hero-orb2"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow"><span></span>Wix Web Designer · UAE</div>
-      <h1 class="hero-title">M. Sajed<br><em>Hamouda</em></h1>
-      <div class="hero-bottom">
-        <p class="hero-desc">Professional Wix website designer crafting refined digital experiences for luxury brands, kitchens, and healthcare across the UAE and beyond — under Da Vinci Studio.</p>
-        <div class="hero-scroll">
-          <div class="scroll-line"></div>
-          Scroll
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-orb1"></div>
+      <div class="hero-orb2"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow"><span></span>Wix Web Designer · UAE</div>
+        <h1 class="hero-title">M. Sajed<br><em>Hamouda</em></h1>
+        <div class="hero-bottom">
+          <p class="hero-desc">Professional Wix website designer crafting refined digital experiences for luxury brands, kitchens, and healthcare across the UAE and beyond — under Da Vinci Studio.</p>
+          <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            Scroll
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <div class="marquee-item">Wix Web Design</div>
-      <div class="marquee-item">UI / UX Design</div>
-      <div class="marquee-item">Luxury Brands</div>
-      <div class="marquee-item">Multilingual Sites</div>
-      <div class="marquee-item">Digital Certificates</div>
-      <div class="marquee-item">PDF Workflows</div>
-      <div class="marquee-item">UAE Based</div>
-      <div class="marquee-item">Wix Web Design</div>
-      <div class="marquee-item">UI / UX Design</div>
-      <div class="marquee-item">Luxury Brands</div>
-      <div class="marquee-item">Multilingual Sites</div>
-      <div class="marquee-item">Digital Certificates</div>
-      <div class="marquee-item">PDF Workflows</div>
-      <div class="marquee-item">UAE Based</div>
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <div class="marquee-item">Wix Web Design</div>
+        <div class="marquee-item">UI / UX Design</div>
+        <div class="marquee-item">Luxury Brands</div>
+        <div class="marquee-item">Multilingual Sites</div>
+        <div class="marquee-item">Digital Certificates</div>
+        <div class="marquee-item">PDF Workflows</div>
+        <div class="marquee-item">UAE Based</div>
+        <div class="marquee-item">Wix Web Design</div>
+        <div class="marquee-item">UI / UX Design</div>
+        <div class="marquee-item">Luxury Brands</div>
+        <div class="marquee-item">Multilingual Sites</div>
+        <div class="marquee-item">Digital Certificates</div>
+        <div class="marquee-item">PDF Workflows</div>
+        <div class="marquee-item">UAE Based</div>
+      </div>
     </div>
-  </div>
 
   <!-- ABOUT -->
-  <section id="about" class="section-pad">
+  <section id="about" class="pad">
+    <div class="section-eyebrow reveal">About Me</div>
     <div class="about-grid">
       <div>
-        <div class="section-label reveal">About</div>
-        <h2 class="about-title reveal">Crafting digital presence with <em>precision.</em></h2>
-        <div class="about-stat-row reveal">
-          <div>
-            <div class="stat-num">4+</div>
-            <div class="stat-label">Active Clients</div>
+        <h2 class="about-h2 reveal">CREATIVE<br>AT THE<br><span>CORE.</span></h2>
+        <div class="about-stats reveal d1">
+          <div class="stat">
+            <div class="stat-n">4+</div>
+            <div class="stat-l">Active Clients</div>
           </div>
-          <div>
-            <div class="stat-num">UAE</div>
-            <div class="stat-label">Based</div>
+          <div class="stat">
+            <div class="stat-n">UAE</div>
+            <div class="stat-l">Based</div>
           </div>
-          <div>
-            <div class="stat-num">3</div>
-            <div class="stat-label">Languages</div>
+          <div class="stat">
+            <div class="stat-n">3</div>
+            <div class="stat-l">Languages</div>
           </div>
         </div>
       </div>
-      <div class="about-right">
-        <p class="reveal">I'm Sajed Hamouda, a professional Wix website designer and UI/UX specialist operating under <em>Da Vinci Studio</em> in the United Arab Emirates. I build elegant, high-performance websites for brands that demand excellence.</p>
-        <p class="reveal delay-1">My portfolio spans luxury kitchen showrooms, dental laboratories, and premium lifestyle brands — each project tailored with precision, from architecture to multilingual support and performance optimization.</p>
-        <div class="skill-chips reveal delay-2">
+      <div>
+        <p class="reveal">I'm Sajed Hamouda, a professional Wix website designer and UI/UX specialist operating under <strong>Da Vinci Studio</strong> in the United Arab Emirates. I build elegant, high-performance websites for brands that demand excellence.</p>
+        <p class="reveal d1">My portfolio spans luxury kitchen showrooms, dental laboratories, and premium lifestyle brands — each project tailored with precision, from architecture to multilingual support and performance optimization.</p>
+        <p class="reveal d2">I bridge creativity and technical execution — producing work that strengthens brands, enhances digital presence, and delivers real results for clients across the UAE.</p>
+        <div class="chips reveal d2">
           <span class="chip">Wix Development</span>
           <span class="chip">UI / UX Design</span>
           <span class="chip">Photoshop</span>
@@ -522,137 +560,137 @@
     </div>
   </section>
 
+  <div class="full-divider"></div>
+
+    <!-- SERVICES -->
+    <section id="services" class="section-pad">
+      <div class="services-intro">
+        <div>
+          <div class="section-label reveal">Services</div>
+          <h2 class="services-h2 reveal">What I <em>do</em> best.</h2>
+        </div>
+        <p class="services-p reveal">From initial concept to live launch — I handle every detail so your brand shows up online exactly as it deserves to.</p>
+      </div>
+      <div class="services-list">
+        <div class="service-card reveal">
+          <div class="svc-index">01</div>
+          <div class="svc-title">Wix Website Design</div>
+          <div class="svc-desc">End-to-end Wix website creation. Custom layouts, animations, responsive design, multilingual support, and full launch setup.</div>
+          <div class="svc-line"></div>
+        </div>
+        <div class="service-card reveal delay-1">
+          <div class="svc-index">02</div>
+          <div class="svc-title">UI/UX & Visual Design</div>
+          <div class="svc-desc">Thoughtful user experience design with Photoshop-crafted assets, brand-consistent visuals, and pixel-perfect execution across all devices.</div>
+          <div class="svc-line"></div>
+        </div>
+        <div class="service-card reveal delay-2">
+          <div class="svc-index">03</div>
+          <div class="svc-title">Advanced Features</div>
+          <div class="svc-desc">Digital certificates with QR codes, PDF integrations, typing animations, Arabic & English multilingual sites, and mobile-optimized workflows.</div>
+          <div class="svc-line"></div>
+        </div>
+      </div>
+    </section>
+
+  <div class="full-divider"></div>
+
   <!-- WORK -->
-  <section id="work" class="section-pad">
-    <div class="work-title-row reveal">
+  <section id="work" class="pad">
+    <div class="work-header reveal">
       <div>
-        <div class="section-label">Selected Work</div>
-        <h2 class="work-h2">Always the best<br><em>work.</em> Word.</h2>
+        <div class="section-eyebrow">Portfolio Projects</div>
+        <h2 class="work-h2">SELECTED<br><span>WORK.</span></h2>
       </div>
-      <a href="#contact" class="view-all">Work with me ↗</a>
+      <a href="#contact" class="work-link">Work with me ↗</a>
     </div>
 
-    <div class="project-list">
-      <a href="https://www.holkerkitchens.com/" target="_blank" class="project-item reveal"
-         data-domain="holkerkitchens.com" data-name="Hölker Kitchens">
-        <span class="proj-num">01</span>
-        <span class="proj-name">Hölker Kitchens</span>
-        <span class="proj-tag">Luxury Kitchens · Abu Dhabi · Wix</span>
-        <span class="proj-arrow">↗</span>
+    <div class="project-table">
+      <a href="https://www.holkerkitchens.com/" target="_blank" class="proj-row reveal">
+        <span class="p-num">01</span>
+        <span class="p-name">HÖLKER KITCHENS</span>
+        <span class="p-tag">Luxury Kitchens · Abu Dhabi · Wix</span>
+        <span class="p-arrow">↗</span>
       </a>
-      <a href="https://www.merantikitchens.com/" target="_blank" class="project-item reveal delay-1"
-         data-domain="merantikitchens.com" data-name="Meranti Kitchens">
-        <span class="proj-num">02</span>
-        <span class="proj-name">Meranti Kitchens</span>
-        <span class="proj-tag">Kitchen & Interiors · Abu Dhabi · Wix</span>
-        <span class="proj-arrow">↗</span>
+      <a href="https://www.merantikitchens.com/" target="_blank" class="proj-row reveal d1">
+        <span class="p-num">02</span>
+        <span class="p-name">MERANTI KITCHENS</span>
+        <span class="p-tag">Kitchen & Interiors · Abu Dhabi · Wix</span>
+        <span class="p-arrow">↗</span>
       </a>
-      <a href="https://bellezzacucine.com/" target="_blank" class="project-item reveal delay-2"
-         data-domain="bellezzacucine.com" data-name="Bellezza Cucine">
-        <span class="proj-num">03</span>
-        <span class="proj-name">Bellezza Cucine</span>
-        <span class="proj-tag">Italian Kitchen Design · Wix</span>
-        <span class="proj-arrow">↗</span>
+      <a href="https://bellezzacucine.com/" target="_blank" class="proj-row reveal d2">
+        <span class="p-num">03</span>
+        <span class="p-name">BELLEZZA CUCINE</span>
+        <span class="p-tag">Italian Kitchen Design · Wix</span>
+        <span class="p-arrow">↗</span>
       </a>
-      <a href="https://www.maestrodentallab.com/" target="_blank" class="project-item reveal delay-3"
-         data-domain="maestrodentallab.com" data-name="Maestro Dental Lab">
-        <span class="proj-num">04</span>
-        <span class="proj-name">Maestro Dental Lab</span>
-        <span class="proj-tag">Healthcare · Abu Dhabi · Wix</span>
-        <span class="proj-arrow">↗</span>
+      <a href="https://www.maestrodentallab.com/" target="_blank" class="proj-row reveal d3">
+        <span class="p-num">04</span>
+        <span class="p-name">MAESTRO DENTAL LAB</span>
+        <span class="p-tag">Healthcare · Abu Dhabi · Wix</span>
+        <span class="p-arrow">↗</span>
       </a>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section-pad">
-    <div class="services-intro">
-      <div>
-        <div class="section-label reveal">Services</div>
-        <h2 class="services-h2 reveal">What I <em>do</em> best.</h2>
+    <!-- CONTACT -->
+    <section id="contact">
+      <div style="padding: 140px 56px;">
+        <div class="section-label reveal">Get In Touch</div>
+        <h2 class="contact-big reveal">Let's build something <em>remarkable</em> together.</h2>
+        <div class="contact-row">
+          <a href="mailto:sajedhamouda@gmail.com" class="contact-email-link reveal">sajedhamouda@gmail.com</a>
+          <span class="contact-location reveal">United Arab Emirates</span>
+        </div>
       </div>
-      <p class="services-p reveal">From initial concept to live launch — I handle every detail so your brand shows up online exactly as it deserves to.</p>
-    </div>
-    <div class="services-list">
-      <div class="service-card reveal">
-        <div class="svc-index">01</div>
-        <div class="svc-title">Wix Website Design</div>
-        <div class="svc-desc">End-to-end Wix website creation. Custom layouts, animations, responsive design, multilingual support, and full launch setup.</div>
-        <div class="svc-line"></div>
-      </div>
-      <div class="service-card reveal delay-1">
-        <div class="svc-index">02</div>
-        <div class="svc-title">UI/UX & Visual Design</div>
-        <div class="svc-desc">Thoughtful user experience design with Photoshop-crafted assets, brand-consistent visuals, and pixel-perfect execution across all devices.</div>
-        <div class="svc-line"></div>
-      </div>
-      <div class="service-card reveal delay-2">
-        <div class="svc-index">03</div>
-        <div class="svc-title">Advanced Features</div>
-        <div class="svc-desc">Digital certificates with QR codes, PDF integrations, typing animations, Arabic & English multilingual sites, and mobile-optimized workflows.</div>
-        <div class="svc-line"></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div style="padding: 140px 56px;">
-      <div class="section-label reveal">Get In Touch</div>
-      <h2 class="contact-big reveal">Let's build something <em>remarkable</em> together.</h2>
-      <div class="contact-row">
-        <a href="mailto:sajedhamouda@gmail.com" class="contact-email-link reveal">sajedhamouda@gmail.com</a>
-        <span class="contact-location reveal">United Arab Emirates</span>
-      </div>
-    </div>
-  </section>
+    <!-- FOOTER -->
+    <footer>
+      <span>© 2026 M. Sajed Hamouda</span>
+      <span class="footer-logo">Da Vinci Studio</span>
+      <span>All Rights Reserved</span>
+    </footer>
 
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2026 M. Sajed Hamouda</span>
-    <span class="footer-logo">Da Vinci Studio</span>
-    <span>All Rights Reserved</span>
-  </footer>
-
-  <script>
-    // Custom cursor
-    const dot = document.getElementById('dot');
-    const ring = document.getElementById('ring');
-    let mx=0, my=0, rx=0, ry=0;
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx+'px'; dot.style.top = my+'px';
-    });
-    (function animRing() {
-      rx += (mx-rx)*0.1; ry += (my-ry)*0.1;
-      ring.style.left = rx+'px'; ring.style.top = ry+'px';
-      requestAnimationFrame(animRing);
-    })();
-    document.querySelectorAll('a,button').forEach(el => {
-      el.addEventListener('mouseenter', ()=>{ ring.style.width='64px'; ring.style.height='64px'; ring.style.opacity='0.3'; });
-      el.addEventListener('mouseleave', ()=>{ ring.style.width='40px'; ring.style.height='40px'; ring.style.opacity='1'; });
-    });
-
-    // Project hover preview
-    const preview = document.getElementById('preview');
-    document.querySelectorAll('.project-item').forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        document.getElementById('prevDomain').textContent = item.dataset.domain;
-        document.getElementById('prevName').textContent = item.dataset.name;
-        preview.classList.add('show');
+    <script>
+      // Custom cursor
+      const dot = document.getElementById('dot');
+      const ring = document.getElementById('ring');
+      let mx=0, my=0, rx=0, ry=0;
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx+'px'; dot.style.top = my+'px';
       });
-      item.addEventListener('mouseleave', () => preview.classList.remove('show'));
-      item.addEventListener('mousemove', e => {
-        preview.style.left = (e.clientX + 36)+'px';
-        preview.style.top  = (e.clientY - 100)+'px';
+      (function animRing() {
+        rx += (mx-rx)*0.1; ry += (my-ry)*0.1;
+        ring.style.left = rx+'px'; ring.style.top = ry+'px';
+        requestAnimationFrame(animRing);
+      })();
+      document.querySelectorAll('a,button').forEach(el => {
+        el.addEventListener('mouseenter', ()=>{ ring.style.width='64px'; ring.style.height='64px'; ring.style.opacity='0.3'; });
+        el.addEventListener('mouseleave', ()=>{ ring.style.width='40px'; ring.style.height='40px'; ring.style.opacity='1'; });
       });
-    });
 
-    // Scroll reveal
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  </script>
+      // Project hover preview
+      const preview = document.getElementById('preview');
+      document.querySelectorAll('.project-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          document.getElementById('prevDomain').textContent = item.dataset.domain;
+          document.getElementById('prevName').textContent = item.dataset.name;
+          preview.classList.add('show');
+        });
+        item.addEventListener('mouseleave', () => preview.classList.remove('show'));
+        item.addEventListener('mousemove', e => {
+          preview.style.left = (e.clientX + 36)+'px';
+          preview.style.top  = (e.clientY - 100)+'px';
+        });
+      });
+
+      // Scroll reveal
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
 </body>
 </html>
