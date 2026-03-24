@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sajed Hamouda — Da Vinci Studio</title>
+  <meta name="description" content="Sajed Hamouda — Wix Certified Web Designer & UI/UX Specialist. Founder of Da Vinci Studio, based in Abu Dhabi, UAE."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,7 +13,6 @@
       --bg: #ffffff;
       --bg2: #f4f4f2;
       --black: #0a0a0a;
-      --black2: #1a1a1a;
       --red: #e63030;
       --muted: #888888;
       --muted2: #555555;
@@ -22,292 +22,99 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--black); font-family: 'Outfit', sans-serif; font-weight: 300; overflow-x: hidden; cursor: none; }
 
-    body {
-      background: var(--bg);
-      color: var(--black);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* =====================
-       PAGE LOADER
-    ===================== */
-    #loader {
-      position: fixed; inset: 0;
-      background: var(--black);
-      z-index: 10000;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 24px;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-    #loader.hide { opacity: 0; visibility: hidden; }
-
-    .loader-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 6rem);
-      letter-spacing: 0.1em;
-      color: var(--bg);
-      overflow: hidden;
-    }
-    .loader-name span {
-      display: inline-block;
-      transform: translateY(100%);
-      animation: loaderSlide 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
-    }
-    .loader-name span:nth-child(2) { color: var(--red); animation-delay: 0.1s; }
-
-    @keyframes loaderSlide {
-      to { transform: translateY(0); }
-    }
-
-    .loader-bar-wrap {
-      width: 220px; height: 2px;
-      background: rgba(255,255,255,0.12);
-    }
-    .loader-bar {
-      height: 100%; width: 0;
-      background: var(--red);
-      animation: loadBar 1.4s ease forwards 0.3s;
-    }
+    /* LOADER */
+    #loader { position: fixed; inset: 0; background: var(--black); z-index: 10000; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; transition: opacity 0.7s ease, visibility 0.7s ease; }
+    #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-logo-img { width: 72px; opacity: 0; animation: fadeIn 0.6s ease forwards 0.1s; }
+    .loader-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 7vw, 5rem); letter-spacing: 0.1em; color: white; overflow: hidden; display: flex; gap: 12px; }
+    .loader-name span { display: inline-block; transform: translateY(110%); animation: slideUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .loader-name span:nth-child(2) { animation-delay: 0.1s; }
+    @keyframes slideUp { to { transform: translateY(0); } }
+    .loader-bar-wrap { width: 180px; height: 2px; background: rgba(255,255,255,0.1); }
+    .loader-bar { height: 100%; width: 0; background: var(--red); animation: loadBar 1.5s ease forwards 0.4s; }
     @keyframes loadBar { to { width: 100%; } }
-
-    .loader-tag {
-      font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      opacity: 0; animation: fadeIn 0.5s ease forwards 0.5s;
-    }
+    .loader-sub { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.3); opacity: 0; animation: fadeIn 0.5s ease forwards 0.5s; }
     @keyframes fadeIn { to { opacity: 1; } }
 
-    /* =====================
-       CURSOR
-    ===================== */
-    .cursor-dot {
-      position: fixed; width: 8px; height: 8px;
-      background: var(--red); border-radius: 50%;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: transform 0.1s, width 0.2s, height 0.2s;
-    }
-    .cursor-ring {
-      position: fixed; width: 36px; height: 36px;
-      border: 1.5px solid var(--black);
-      border-radius: 50%; pointer-events: none;
-      z-index: 9998; transform: translate(-50%,-50%);
-      transition: width 0.3s, height 0.3s, border-color 0.3s, opacity 0.3s;
-    }
+    /* CURSOR */
+    .cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--red); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.1s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid var(--black); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
     .cursor-ring.big { width: 56px; height: 56px; border-color: var(--red); }
     .cursor-dot.clicking { transform: translate(-50%,-50%) scale(0.5); }
 
-    /* =====================
-       NAV
-    ===================== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 500; background: var(--bg);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 20px 56px;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem; letter-spacing: 0.12em;
-      color: var(--black); text-decoration: none;
-    }
-    .nav-logo span { color: var(--red); }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: var(--bg); display: flex; justify-content: space-between; align-items: center; padding: 14px 56px; border-bottom: 1px solid var(--border); }
+    .nav-logo img { height: 44px; display: block; }
     .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted2); text-decoration: none;
-      transition: color 0.25s;
-    }
+    .nav-links a { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted2); text-decoration: none; transition: color 0.25s; }
     .nav-links a:hover { color: var(--red); }
-    .nav-contact {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--bg); background: var(--black);
-      text-decoration: none; padding: 10px 24px;
-      transition: background 0.25s;
-    }
+    .nav-contact { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--bg); background: var(--black); text-decoration: none; padding: 10px 24px; transition: background 0.25s; }
     .nav-contact:hover { background: var(--red); }
 
-    /* =====================
-       HERO
-    ===================== */
-    #hero {
-      min-height: 100vh;
-      padding: 120px 56px 80px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      grid-template-rows: auto 1fr auto;
-      position: relative; overflow: hidden;
-    }
-
-    .hero-tag {
-      grid-column: 1; grid-row: 1;
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 20px;
-      opacity: 0; animation: fadeUp 0.7s ease forwards 0.3s;
-    }
+    /* HERO */
+    #hero { min-height: 100vh; padding: 120px 56px 80px; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr auto; position: relative; overflow: hidden; }
+    .hero-tag { grid-column: 1; grid-row: 1; display: flex; align-items: center; gap: 12px; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.7s ease forwards 0.3s; }
     .hero-tag::before { content: ''; width: 32px; height: 2px; background: var(--red); }
-
-    .hero-name {
-      grid-column: 1 / -1; grid-row: 2;
-      align-self: center;
-    }
-    .hero-name h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 18vw, 18rem);
-      line-height: 0.88; letter-spacing: 0.01em;
-      color: var(--black);
-      opacity: 0; animation: fadeUp 1s ease forwards 0.5s;
-    }
-    .hero-name h1 .line2 { color: var(--black); display: block; }
-    .hero-name .subtitle {
-      font-size: 0.85rem; font-weight: 400;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); margin-top: 8px;
-      display: flex; align-items: center; gap: 20px;
-      opacity: 0; animation: fadeUp 1s ease forwards 0.7s;
-    }
+    .hero-name { grid-column: 1 / -1; grid-row: 2; align-self: center; }
+    .hero-name h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 18vw, 18rem); line-height: 0.88; letter-spacing: 0.01em; color: var(--black); opacity: 0; animation: fadeUp 1s ease forwards 0.5s; }
+    .hero-name h1 .line2 { display: block; }
+    .hero-name .subtitle { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: flex; align-items: center; gap: 20px; opacity: 0; animation: fadeUp 1s ease forwards 0.7s; }
     .hero-name .subtitle::before { content: ''; width: 40px; height: 1px; background: var(--border-dark); }
+    .typewriter-wrap { grid-column: 1; grid-row: 1; align-self: end; font-size: 0.82rem; font-weight: 400; color: var(--muted2); letter-spacing: 0.05em; min-height: 1.4em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; opacity: 0; animation: fadeIn 0.5s ease forwards 1.4s; }
+    .tw-text { color: var(--red); font-weight: 500; }
+    .tw-cursor { display: inline-block; width: 2px; height: 1em; background: var(--red); animation: blink 0.75s step-end infinite; vertical-align: middle; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-bottom { grid-column: 1 / -1; grid-row: 3; display: flex; justify-content: space-between; align-items: flex-end; margin-top: 60px; opacity: 0; animation: fadeUp 1s ease forwards 0.9s; }
+    .hero-desc { max-width: 420px; font-size: 0.95rem; line-height: 1.85; color: var(--muted2); }
+    .hero-location { text-align: right; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .hero-location strong { display: block; font-size: 1rem; font-weight: 600; color: var(--black); letter-spacing: 0.05em; text-transform: none; margin-bottom: 4px; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
 
-    /* TYPEWRITER */
-    .typewriter-wrap {
-      grid-column: 1; grid-row: 1;
-      align-self: end;
-      font-size: 0.8rem; font-weight: 400;
-      color: var(--muted2); letter-spacing: 0.06em;
-      min-height: 1.4em;
-      display: flex; align-items: center; gap: 6px;
-      margin-bottom: 8px;
-      opacity: 0; animation: fadeIn 0.5s ease forwards 1.2s;
-    }
-    .typewriter-text { color: var(--red); font-weight: 500; }
-    .typewriter-cursor {
-      display: inline-block; width: 2px; height: 1em;
-      background: var(--red);
-      animation: blink 0.75s step-end infinite;
-      vertical-align: middle;
-    }
-    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+    /* TICKER */
+    .ticker-wrap { overflow: hidden; padding: 16px 0; background: var(--black); border-top: 2px solid var(--red); }
+    .ticker-track { display: flex; animation: ticker 30s linear infinite; white-space: nowrap; }
+    .ticker-item { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); padding: 0 32px; display: inline-flex; align-items: center; gap: 32px; }
+    .ticker-item .dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    .hero-bottom {
-      grid-column: 1 / -1; grid-row: 3;
-      display: flex; justify-content: space-between;
-      align-items: flex-end; margin-top: 60px;
-      opacity: 0; animation: fadeUp 1s ease forwards 0.9s;
-    }
-    .hero-desc {
-      max-width: 420px;
-      font-size: 0.95rem; line-height: 1.85;
-      color: var(--muted2);
-    }
-    .hero-location {
-      text-align: right;
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--muted);
-    }
-    .hero-location strong {
-      display: block; font-size: 1rem; font-weight: 600;
-      color: var(--black); letter-spacing: 0.05em;
-      text-transform: none; margin-bottom: 4px;
-    }
-
-    /* =====================
-       TICKER
-    ===================== */
-    .ticker-wrap {
-      overflow: hidden; padding: 16px 0;
-      background: var(--black);
-      border-top: 2px solid var(--red);
-    }
-    .ticker-track {
-      display: flex;
-      animation: ticker 30s linear infinite;
-      white-space: nowrap;
-    }
-    .ticker-item {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.95rem; letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.5);
-      padding: 0 32px; display: inline-flex;
-      align-items: center; gap: 32px;
-    }
-    .ticker-item .dot {
-      width: 5px; height: 5px;
-      background: var(--red); border-radius: 50%; /* FIXED: was 50 missing % */
-      display: inline-block; flex-shrink: 0;
-    }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* =====================
-       SECTION BASE
-    ===================== */
+    /* SECTION BASE */
     section { position: relative; }
     .pad { padding: 120px 56px; }
-
-    .section-eyebrow {
-      font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 56px;
-      display: flex; align-items: center; gap: 12px;
-    }
+    .section-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 56px; display: flex; align-items: center; gap: 12px; }
     .section-eyebrow::before { content: '/'; color: var(--red); }
-
     .full-divider { width: 100%; height: 1px; background: var(--border); }
 
-    /* =====================
-       ABOUT
-    ===================== */
+    /* ABOUT */
     #about { background: var(--bg); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
-    .about-h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 0.95; color: var(--black);
-      margin-bottom: 32px; letter-spacing: 0.02em;
-    }
+    .about-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; color: var(--black); margin-bottom: 32px; letter-spacing: 0.02em; }
     .about-h2 span { color: var(--red); }
     .about-stats { display: flex; gap: 0; margin-top: 48px; border-top: 1px solid var(--border); }
     .stat { flex: 1; padding: 28px 24px 0 0; border-right: 1px solid var(--border); margin-right: 24px; }
     .stat:last-child { border-right: none; margin-right: 0; padding-right: 0; }
     .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--black); line-height: 1; }
     .stat-l { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+    .cert-badge { display: inline-flex; align-items: center; gap: 14px; margin-top: 40px; padding: 14px 20px; border: 1.5px solid var(--border-dark); background: var(--bg2); transition: border-color 0.3s; }
+    .cert-badge:hover { border-color: var(--red); }
+    .cert-badge img { width: 52px; height: 52px; object-fit: contain; }
+    .cert-title { font-size: 0.72rem; font-weight: 600; color: var(--black); letter-spacing: 0.04em; }
+    .cert-sub { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; margin-top: 3px; }
     .about-right p { font-size: 0.95rem; line-height: 1.95; color: var(--muted2); margin-bottom: 20px; }
+    .about-right p strong { color: var(--black); font-weight: 600; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; }
-    .chip {
-      font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      border: 1.5px solid var(--black); padding: 7px 16px;
-      color: var(--black); transition: all 0.25s; background: transparent;
-    }
+    .chip { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; border: 1.5px solid var(--black); padding: 7px 16px; color: var(--black); transition: all 0.25s; background: transparent; }
     .chip:hover { background: var(--black); color: var(--bg); }
 
-    /* =====================
-       SERVICES
-    ===================== */
+    /* SERVICES */
     #services { background: var(--bg2); }
     .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 72px; }
-    .services-h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 5.5vw, 5rem);
-      line-height: 0.95; color: var(--black); letter-spacing: 0.02em;
-    }
+    .services-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 5.5vw, 5rem); line-height: 0.95; color: var(--black); letter-spacing: 0.02em; }
     .services-h2 span { color: var(--red); }
     .services-intro-p { font-size: 0.95rem; line-height: 1.9; color: var(--muted2); align-self: end; }
     .services-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1.5px solid var(--border-dark); }
-    .svc {
-      padding: 48px 36px; border-right: 1.5px solid var(--border-dark);
-      transition: background 0.3s; position: relative;
-    }
+    .svc { padding: 48px 36px; border-right: 1.5px solid var(--border-dark); transition: background 0.3s; position: relative; }
     .svc:last-child { border-right: none; }
     .svc:hover { background: var(--black); }
     .svc-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--border-dark); line-height: 1; margin-bottom: 28px; transition: color 0.3s; }
@@ -319,44 +126,48 @@
     .svc-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
     .svc:hover .svc-bar { transform: scaleX(1); }
 
-    /* =====================
-       WORK
-    ===================== */
+    /* WORK - VIDEO / LOGO CARDS */
     #work { background: var(--bg); }
-    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0; }
+    .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
     .work-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--black); }
     .work-h2 span { color: var(--red); }
     .work-link { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); text-decoration: none; border-bottom: 2px solid var(--black); padding-bottom: 3px; transition: all 0.25s; margin-bottom: 10px; }
     .work-link:hover { color: var(--red); border-color: var(--red); }
 
-    .project-table { margin-top: 60px; }
-    .proj-row {
-      display: grid; grid-template-columns: 72px 1fr 220px 60px;
-      align-items: center; gap: 40px; padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      text-decoration: none; color: var(--black);
-      position: relative; overflow: hidden;
-      transition: padding 0.35s ease;
-    }
-    .proj-row:first-child { border-top: 1px solid var(--border); }
-    .proj-row::before {
-      content: ''; position: absolute;
-      left: 0; top: 0; bottom: 0; width: 3px;
-      background: var(--red); transform: scaleY(0);
-      transform-origin: bottom; transition: transform 0.35s ease;
-    }
-    .proj-row:hover::before { transform: scaleY(1); }
-    .proj-row:hover { padding-left: 16px; }
-    .p-num { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--red); letter-spacing: 0.1em; }
-    .p-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.04em; color: var(--black); transition: color 0.3s; }
-    .proj-row:hover .p-name { color: var(--red); }
-    .p-tag { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-    .p-arrow { font-size: 1.3rem; color: var(--red); opacity: 0; transform: translateX(-10px); transition: all 0.35s; }
-    .proj-row:hover .p-arrow { opacity: 1; transform: translateX(0); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .proj-card { position: relative; overflow: hidden; aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: flex-end; text-decoration: none; color: white; background: var(--black); }
+    .proj-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: opacity 0.5s ease, transform 0.7s ease; }
+    .proj-card:hover .proj-video { opacity: 0.8; transform: scale(1.05); }
+    .proj-logo-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 40px; transition: transform 0.7s ease; }
+    .proj-card:hover .proj-logo-bg { transform: scale(1.05); }
+    .proj-logo-bg img { max-width: 65%; max-height: 60%; object-fit: contain; }
+    .proj-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.25) 55%, transparent 100%); z-index: 1; transition: opacity 0.4s; }
+    .proj-card:hover .proj-overlay { opacity: 0.85; }
+    .proj-content { position: relative; z-index: 2; padding: 28px; transform: translateY(6px); transition: transform 0.4s ease; }
+    .proj-card:hover .proj-content { transform: translateY(0); }
+    .proj-cat { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+    .proj-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 8px; }
+    .proj-desc { font-size: 0.72rem; line-height: 1.7; color: rgba(255,255,255,0.6); max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.4s; opacity: 0; }
+    .proj-card:hover .proj-desc { max-height: 60px; opacity: 1; }
+    .proj-arrow { position: absolute; top: 20px; right: 20px; z-index: 2; width: 38px; height: 38px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: white; opacity: 0; transform: translateY(-6px); transition: all 0.35s; }
+    .proj-card:hover .proj-arrow { opacity: 1; transform: translateY(0); }
 
-    /* =====================
-       CONTACT
-    ===================== */
+    /* LOGOS SECTION */
+    #logos { background: var(--bg2); }
+    .logos-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+    .logos-h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 5rem); line-height: 0.95; color: var(--black); }
+    .logos-h2 span { color: var(--red); }
+    .logos-sub { font-size: 0.88rem; line-height: 1.85; color: var(--muted2); max-width: 320px; align-self: flex-end; }
+    .logos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .logo-card { background: var(--black); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; padding: 48px; position: relative; overflow: hidden; transition: transform 0.4s ease; }
+    .logo-card.light { background: var(--bg); border: 1px solid var(--border); }
+    .logo-card:hover { transform: scale(0.98); }
+    .logo-card img { max-width: 70%; max-height: 70%; object-fit: contain; transition: transform 0.4s ease; }
+    .logo-card:hover img { transform: scale(1.06); }
+    .logo-card-label { position: absolute; bottom: 14px; left: 18px; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .logo-card.light .logo-card-label { color: var(--muted); }
+
+    /* CONTACT */
     #contact { background: var(--black); padding: 120px 56px; }
     .contact-eyebrow { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 48px; display: flex; align-items: center; gap: 12px; }
     .contact-eyebrow::before { content: '/'; }
@@ -369,35 +180,20 @@
     .contact-cta { margin-left: auto; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); background: var(--bg); text-decoration: none; padding: 14px 32px; transition: all 0.3s; }
     .contact-cta:hover { background: var(--red); color: var(--bg); }
 
-    /* =====================
-       FOOTER
-    ===================== */
+    /* FOOTER */
     footer { background: var(--black); padding: 24px 56px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; }
     footer span { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
-    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); }
+    .footer-logo img { height: 32px; opacity: 0.55; }
 
-    /* =====================
-       SCROLL REVEAL
-    ===================== */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.85s ease, transform 0.85s ease;
-    }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.85s ease, transform 0.85s ease; }
     .reveal.in { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.2s; }
-    .d3 { transition-delay: 0.3s; }
+    .d1{transition-delay:0.08s} .d2{transition-delay:0.16s} .d3{transition-delay:0.24s}
+    .d4{transition-delay:0.32s} .d5{transition-delay:0.4s}  .d6{transition-delay:0.48s}
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* =====================
-       RESPONSIVE
-    ===================== */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
+      nav { padding: 12px 24px; }
       .nav-links { display: none; }
       #hero { padding: 100px 24px 60px; grid-template-columns: 1fr; }
       .pad { padding: 80px 24px; }
@@ -405,25 +201,22 @@
       .services-grid { grid-template-columns: 1fr; }
       .svc { border-right: none; border-bottom: 1.5px solid var(--border-dark); }
       .svc:last-child { border-bottom: none; }
-      .proj-row { grid-template-columns: 50px 1fr auto; gap: 16px; }
-      .p-tag { display: none; }
-      footer { flex-direction: column; gap: 8px; padding: 20px 24px; text-align: center; }
-      .contact-cta { margin-left: 0; }
+      .projects-grid, .logos-grid { grid-template-columns: 1fr; }
+      .logos-header, .work-header { flex-direction: column; align-items: flex-start; gap: 20px; }
       #contact { padding: 80px 24px; }
+      .contact-cta { margin-left: 0; }
+      footer { flex-direction: column; gap: 12px; padding: 20px 24px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- PAGE LOADER -->
+  <!-- LOADER -->
   <div id="loader">
-    <div class="loader-name">
-      <span>SAJED</span>&nbsp;<span>HAMOUDA</span>
-    </div>
-    <div class="loader-bar-wrap">
-      <div class="loader-bar"></div>
-    </div>
-    <div class="loader-tag">Da Vinci Studio · UAE</div>
+    <img class="loader-logo-img" src="images/logo-davinci.png" alt="Da Vinci Studio">
+    <div class="loader-name"><span>SAJED</span><span>HAMOUDA</span></div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    <div class="loader-sub">Da Vinci Studio · Abu Dhabi, UAE</div>
   </div>
 
   <!-- CURSOR -->
@@ -432,39 +225,27 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Da<span>Vinci</span> Studio</a>
+    <a href="#" class="nav-logo"><img src="images/logo-davinci.png" alt="Da Vinci Studio"></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#work">Work</a></li>
+      <li><a href="#logos">Logos</a></li>
     </ul>
     <a href="mailto:sajedhamouda@gmail.com" class="nav-contact">Contact me</a>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-tag">Wix Web Designer &amp; UI/UX Specialist</div>
-
+    <div class="hero-tag">Wix Certified Designer &amp; UI/UX Specialist</div>
     <div class="hero-name">
-      <h1>
-        SAJED
-        <span class="line2">HAMOUDA</span>
-      </h1>
-      <p class="subtitle">Designer &amp; Wix Expert &nbsp;·&nbsp; Da Vinci Studio</p>
+      <h1>SAJED<span class="line2">HAMOUDA</span></h1>
+      <p class="subtitle">Founder, Da Vinci Studio &nbsp;·&nbsp; Abu Dhabi, UAE</p>
     </div>
-
-    <div class="typewriter-wrap">
-      I build&nbsp;<span class="typewriter-text" id="tw-text"></span><span class="typewriter-cursor"></span>
-    </div>
-
+    <div class="typewriter-wrap">I build&nbsp;<span class="tw-text" id="tw-text"></span><span class="tw-cursor"></span></div>
     <div class="hero-bottom">
-      <p class="hero-desc">
-        Professional Wix website designer crafting high-performance digital experiences for luxury brands, kitchens, and healthcare — based in the United Arab Emirates.
-      </p>
-      <div class="hero-location">
-        <strong>United Arab Emirates</strong>
-        Based in UAE · Available Worldwide
-      </div>
+      <p class="hero-desc">Professional Wix website designer crafting high-performance digital experiences for luxury brands, kitchens, and healthcare — based in the United Arab Emirates.</p>
+      <div class="hero-location"><strong>United Arab Emirates</strong>Based in UAE · Available Worldwide</div>
     </div>
   </section>
 
@@ -476,16 +257,16 @@
       <div class="ticker-item"><span class="dot"></span>Luxury Brands</div>
       <div class="ticker-item"><span class="dot"></span>Multilingual Sites</div>
       <div class="ticker-item"><span class="dot"></span>Digital Certificates</div>
-      <div class="ticker-item"><span class="dot"></span>PDF Workflows</div>
-      <div class="ticker-item"><span class="dot"></span>Abu Dhabi Clients</div>
+      <div class="ticker-item"><span class="dot"></span>Logo Design</div>
+      <div class="ticker-item"><span class="dot"></span>Abu Dhabi · UAE</div>
       <div class="ticker-item"><span class="dot"></span>Arabic &amp; English</div>
       <div class="ticker-item"><span class="dot"></span>Wix Web Design</div>
       <div class="ticker-item"><span class="dot"></span>UI / UX Design</div>
       <div class="ticker-item"><span class="dot"></span>Luxury Brands</div>
       <div class="ticker-item"><span class="dot"></span>Multilingual Sites</div>
       <div class="ticker-item"><span class="dot"></span>Digital Certificates</div>
-      <div class="ticker-item"><span class="dot"></span>PDF Workflows</div>
-      <div class="ticker-item"><span class="dot"></span>Abu Dhabi Clients</div>
+      <div class="ticker-item"><span class="dot"></span>Logo Design</div>
+      <div class="ticker-item"><span class="dot"></span>Abu Dhabi · UAE</div>
       <div class="ticker-item"><span class="dot"></span>Arabic &amp; English</div>
     </div>
   </div>
@@ -497,31 +278,30 @@
       <div>
         <h2 class="about-h2 reveal">CREATIVE<br>AT THE<br><span>CORE.</span></h2>
         <div class="about-stats reveal d1">
-          <div class="stat">
-            <div class="stat-n">4+</div>
-            <div class="stat-l">Active Clients</div>
-          </div>
-          <div class="stat">
-            <div class="stat-n">UAE</div>
-            <div class="stat-l">Based</div>
-          </div>
-          <div class="stat">
-            <div class="stat-n">3</div>
-            <div class="stat-l">Languages</div>
+          <div class="stat"><div class="stat-n">6+</div><div class="stat-l">Years Exp.</div></div>
+          <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Websites</div></div>
+          <div class="stat"><div class="stat-n">3</div><div class="stat-l">Languages</div></div>
+        </div>
+        <div class="cert-badge reveal d2">
+          <img src="images/cert-wix.png" alt="Wix Accessibility Certificate">
+          <div>
+            <div class="cert-title">Wix Certified — Accessibility Specialist</div>
+            <div class="cert-sub">Issued May 18, 2023</div>
           </div>
         </div>
       </div>
       <div>
-        <p class="reveal">I'm Sajed Hamouda, a professional Wix website designer and UI/UX specialist operating under <strong>Da Vinci Studio</strong> in the United Arab Emirates. I build elegant, high-performance websites for brands that demand excellence.</p>
-        <p class="reveal d1">My portfolio spans luxury kitchen showrooms, dental laboratories, and premium lifestyle brands — each project tailored with precision, from architecture to multilingual support and performance optimization.</p>
-        <p class="reveal d2">I bridge creativity and technical execution — producing work that strengthens brands, enhances digital presence, and delivers real results for clients across the UAE.</p>
-        <div class="chips reveal d2">
+        <p class="reveal">I'm <strong>Sajed Hamouda</strong> — a Wix Certified designer and founder of <strong>Da Vinci Studio</strong>, based in Abu Dhabi, UAE. With over 6 years of experience building websites from scratch, I specialize in creating elegant, high-performance digital experiences for brands that refuse to settle for average.</p>
+        <p class="reveal d1">My background is anything but ordinary. As both a trained dental technician and a certified web designer, I bring an obsessive attention to detail to every project — whether it's a luxury kitchen showroom, a dental laboratory, or a premium lifestyle brand. I understand my clients' industries because I've worked in them.</p>
+        <p class="reveal d2">What sets my work apart is simple: <strong>I don't stop until it's right.</strong> From architecture and typography to multilingual support and logo design, every element is crafted with precision — because your digital presence deserves nothing less.</p>
+        <div class="chips reveal d3">
           <span class="chip">Wix Development</span>
           <span class="chip">UI / UX Design</span>
           <span class="chip">Photoshop</span>
           <span class="chip">PDF Workflows</span>
           <span class="chip">Multilingual</span>
           <span class="chip">Digital Certificates</span>
+          <span class="chip">Logo Design</span>
           <span class="chip">Brand Identity</span>
         </div>
       </div>
@@ -554,8 +334,8 @@
       </div>
       <div class="svc reveal d2">
         <div class="svc-num">03</div>
-        <div class="svc-title">Advanced Features</div>
-        <div class="svc-desc">Digital certificates with QR codes, PDF integrations, typing animations, Arabic &amp; English multilingual sites, and mobile-optimized print layouts.</div>
+        <div class="svc-title">Logo &amp; Brand Identity</div>
+        <div class="svc-desc">Strategic logo design and brand identity creation — from concept to final files. Bilingual branding for Arabic and English markets across the UAE.</div>
         <div class="svc-bar"></div>
       </div>
     </div>
@@ -572,138 +352,180 @@
       </div>
       <a href="#contact" class="work-link">Work with me ↗</a>
     </div>
-    <div class="project-table">
-      <a href="https://www.holkerkitchens.com/" target="_blank" class="proj-row reveal">
-        <span class="p-num">01</span>
-        <span class="p-name">HÖLKER KITCHENS</span>
-        <span class="p-tag">Luxury Kitchens · Abu Dhabi · Wix</span>
-        <span class="p-arrow">↗</span>
+    <div class="projects-grid">
+
+      <!-- Holker — VIDEO -->
+      <a href="https://www.holkerkitchens.com/" target="_blank" class="proj-card reveal">
+        <video class="proj-video" src="videos/holker.mp4" muted loop playsinline preload="none"></video>
+        <div class="proj-overlay"></div>
+        <div class="proj-arrow">↗</div>
+        <div class="proj-content">
+          <div class="proj-cat">Luxury Kitchens · Abu Dhabi</div>
+          <div class="proj-title">HÖLKER KITCHENS</div>
+          <div class="proj-desc">German kitchen brand — portfolio, multilingual navigation, product samples &amp; contact.</div>
+        </div>
       </a>
-      <a href="https://www.merantikitchens.com/" target="_blank" class="proj-row reveal d1">
-        <span class="p-num">02</span>
-        <span class="p-name">MERANTI KITCHENS</span>
-        <span class="p-tag">Kitchen &amp; Interiors · Abu Dhabi · Wix</span>
-        <span class="p-arrow">↗</span>
+
+      <!-- Meranti — LOGO + black/purple bg -->
+      <a href="https://www.merantikitchens.com/" target="_blank" class="proj-card reveal d1" style="background:#0d0010;">
+        <div class="proj-logo-bg"><img src="images/logo-meranti.png" alt="Meranti Kitchens"></div>
+        <div class="proj-overlay"></div>
+        <div class="proj-arrow">↗</div>
+        <div class="proj-content">
+          <div class="proj-cat">Kitchen &amp; Interiors · Abu Dhabi</div>
+          <div class="proj-title">MERANTI KITCHENS</div>
+          <div class="proj-desc">German kitchen brand — kitchens, bath &amp; closets with Arabic/English catalog integration.</div>
+        </div>
       </a>
-      <a href="https://bellezzacucine.com/" target="_blank" class="proj-row reveal d2">
-        <span class="p-num">03</span>
-        <span class="p-name">BELLEZZA CUCINE</span>
-        <span class="p-tag">Italian Kitchen Design · Wix</span>
-        <span class="p-arrow">↗</span>
+
+      <!-- Bellezza — LOGO + black bg -->
+      <a href="https://bellezzacucine.com/" target="_blank" class="proj-card reveal d2" style="background:#0d0d0d;">
+        <div class="proj-logo-bg"><img src="images/logo-bellezza.png" alt="Bellezza Cucine"></div>
+        <div class="proj-overlay"></div>
+        <div class="proj-arrow">↗</div>
+        <div class="proj-content">
+          <div class="proj-cat">Italian Kitchen Design</div>
+          <div class="proj-title">BELLEZZA CUCINE</div>
+          <div class="proj-desc">Italian luxury kitchen experience — editorial layouts and immersive product presentation.</div>
+        </div>
       </a>
-      <a href="https://www.maestrodentallab.com/" target="_blank" class="proj-row reveal d3">
-        <span class="p-num">04</span>
-        <span class="p-name">MAESTRO DENTAL LAB</span>
-        <span class="p-tag">Healthcare · Abu Dhabi · Wix</span>
-        <span class="p-arrow">↗</span>
+
+      <!-- Maestro — VIDEO -->
+      <a href="https://www.maestrodentallab.com/" target="_blank" class="proj-card reveal d3">
+        <video class="proj-video" src="videos/maestro.mp4" muted loop playsinline preload="none"></video>
+        <div class="proj-overlay"></div>
+        <div class="proj-arrow">↗</div>
+        <div class="proj-content">
+          <div class="proj-cat">Healthcare · Abu Dhabi</div>
+          <div class="proj-title">MAESTRO DENTAL LAB</div>
+          <div class="proj-desc">Professional dental laboratory — services showcase, gallery &amp; bilingual contact.</div>
+        </div>
       </a>
+
+      <!-- OnTech — VIDEO -->
+      <a href="https://sajedm6.wixsite.com/website-3" target="_blank" class="proj-card reveal d4">
+        <video class="proj-video" src="videos/ontech.mp4" muted loop playsinline preload="none"></video>
+        <div class="proj-overlay"></div>
+        <div class="proj-arrow">↗</div>
+        <div class="proj-content">
+          <div class="proj-cat">IT Services · Istanbul</div>
+          <div class="proj-title">ONTECH GROUP</div>
+          <div class="proj-desc">IT services company — clean corporate design with full services and about sections.</div>
+        </div>
+      </a>
+
+      <!-- Kolman — VIDEO (same as Holker) -->
+      <a href="https://sajedm6.wixsite.com/website-1" target="_blank" class="proj-card reveal d5">
+        <video class="proj-video" src="videos/holker.mp4" muted loop playsinline preload="none"></video>
+        <div class="proj-overlay"></div>
+        <div class="proj-arrow">↗</div>
+        <div class="proj-content">
+          <div class="proj-cat">German Kitchens &amp; Cabinets</div>
+          <div class="proj-title">KOLMAN KITCHENS</div>
+          <div class="proj-desc">German kitchen &amp; cabinet brand — Arabic/English bilingual site with portfolio &amp; contact.</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <div class="full-divider"></div>
+
+  <!-- LOGOS -->
+  <section id="logos" class="pad">
+    <div class="logos-header reveal">
+      <div>
+        <div class="section-eyebrow">Logo &amp; Brand Identity</div>
+        <h2 class="logos-h2">LOGO<br><span>DESIGN.</span></h2>
+      </div>
+      <p class="logos-sub">Brand identities crafted for clients across the UAE — from Arabic calligraphy to modern corporate marks.</p>
+    </div>
+    <div class="logos-grid">
+      <div class="logo-card reveal">
+        <img src="images/logo-bellezza.png" alt="Bellezza Cucine Logo">
+        <span class="logo-card-label">Bellezza Cucine</span>
+      </div>
+      <div class="logo-card light reveal d1">
+        <img src="images/logo-cafeteria.png" alt="Cafeteria Logo">
+        <span class="logo-card-label">Cafeteria · جيت بوقتك</span>
+      </div>
+      <div class="logo-card light reveal d2">
+        <img src="images/logo-lumident.jpg" alt="Lumi Dent Logo">
+        <span class="logo-card-label">Lumi Dent</span>
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="contact-eyebrow">Get In Touch</div>
-    <h2 class="contact-big">LET'S BUILD<br>SOMETHING<br><span>REMARKABLE.</span></h2>
-    <div class="contact-row">
-      <a href="mailto:sajedhamouda@gmail.com" class="contact-email">sajedhamouda@gmail.com</a>
-      <span class="contact-loc">United Arab Emirates</span>
-      <a href="mailto:sajedhamouda@gmail.com" class="contact-cta">Send a message</a>
+    <div style="padding:120px 56px 120px;">
+      <div class="contact-eyebrow reveal">Get In Touch</div>
+      <h2 class="contact-big reveal">LET'S BUILD<br>SOMETHING<br><span>REMARKABLE.</span></h2>
+      <div class="contact-row">
+        <a href="mailto:sajedhamouda@gmail.com" class="contact-email reveal">sajedhamouda@gmail.com</a>
+        <span class="contact-loc reveal d1">United Arab Emirates</span>
+        <a href="mailto:sajedhamouda@gmail.com" class="contact-cta reveal d2">Send a message</a>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span>© 2026 Sajed Hamouda</span>
-    <span class="footer-brand">DA VINCI STUDIO</span>
+    <div class="footer-logo"><img src="images/logo-davinci.png" alt="Da Vinci Studio"></div>
     <span>All Rights Reserved</span>
   </footer>
 
   <script>
-    // =====================
-    // PAGE LOADER
-    // =====================
+    // LOADER
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hide');
-      }, 1800);
+      setTimeout(() => document.getElementById('loader').classList.add('hide'), 1900);
     });
 
-    // =====================
-    // CUSTOM CURSOR
-    // =====================
+    // CURSOR
     const dot = document.getElementById('dot');
     const ring = document.getElementById('ring');
-    let mx=0, my=0, rx=0, ry=0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx+'px'; dot.style.top = my+'px';
-    });
-
-    (function animRing() {
-      rx += (mx-rx) * 0.11;
-      ry += (my-ry) * 0.11;
-      ring.style.left = rx+'px';
-      ring.style.top  = ry+'px';
-      requestAnimationFrame(animRing);
-    })();
-
-    document.querySelectorAll('a, button').forEach(el => {
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+    (function anim(){ rx+=(mx-rx)*0.11; ry+=(my-ry)*0.11; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(anim); })();
+    document.querySelectorAll('a,button').forEach(el => {
       el.addEventListener('mouseenter', () => ring.classList.add('big'));
       el.addEventListener('mouseleave', () => ring.classList.remove('big'));
     });
-
     document.addEventListener('mousedown', () => dot.classList.add('clicking'));
-    document.addEventListener('mouseup',   () => dot.classList.remove('clicking'));
+    document.addEventListener('mouseup', () => dot.classList.remove('clicking'));
 
-    // =====================
+    // VIDEO ON HOVER
+    document.querySelectorAll('.proj-card').forEach(card => {
+      const video = card.querySelector('.proj-video');
+      if (!video) return;
+      card.addEventListener('mouseenter', () => video.play());
+      card.addEventListener('mouseleave', () => video.pause());
+    });
+
     // TYPEWRITER
-    // =====================
-    const twPhrases = [
-      'Wix websites.',
-      'UI/UX experiences.',
-      'multilingual sites.',
-      'digital certificates.',
-      'luxury brand presence.'
-    ];
+    const phrases = ['Wix websites.','UI/UX experiences.','multilingual sites.','digital certificates.','luxury brand presence.','logo identities.'];
     const twEl = document.getElementById('tw-text');
-    let twIndex = 0, twChar = 0, twDeleting = false;
-
-    function typeWriter() {
-      const current = twPhrases[twIndex];
-      if (!twDeleting) {
-        twEl.textContent = current.slice(0, ++twChar);
-        if (twChar === current.length) {
-          twDeleting = true;
-          setTimeout(typeWriter, 1800);
-          return;
-        }
-        setTimeout(typeWriter, 65);
+    let idx=0,ch=0,del=false;
+    function type() {
+      const cur = phrases[idx];
+      if (!del) {
+        twEl.textContent = cur.slice(0,++ch);
+        if (ch===cur.length) { del=true; setTimeout(type,1800); return; }
+        setTimeout(type,65);
       } else {
-        twEl.textContent = current.slice(0, --twChar);
-        if (twChar === 0) {
-          twDeleting = false;
-          twIndex = (twIndex + 1) % twPhrases.length;
-          setTimeout(typeWriter, 400);
-          return;
-        }
-        setTimeout(typeWriter, 35);
+        twEl.textContent = cur.slice(0,--ch);
+        if (ch===0) { del=false; idx=(idx+1)%phrases.length; setTimeout(type,400); return; }
+        setTimeout(type,35);
       }
     }
-    setTimeout(typeWriter, 2000);
+    setTimeout(type, 2200);
 
-    // =====================
     // SCROLL REVEAL
-    // =====================
-    const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 </body>
 </html>
